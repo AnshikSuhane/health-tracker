@@ -1,4 +1,4 @@
-name: Build and Deploy Health-Tracker to Droplet
+name: Build and Deploy health-Tracker to Droplet
 
 on: [push]
 
