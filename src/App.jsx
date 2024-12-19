@@ -1,9 +1,9 @@
-import { Login } from "./Auth/login";
-
+import "./App.css";
+import Dashboard from "./component/user/Dashboard/Dashboard";
 function App() {
   return (
     <>
-      <Login />
+      <Dashboard/>
     </>
   );
 }
