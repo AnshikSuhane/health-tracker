@@ -4,6 +4,7 @@ src
       admin_login.jsx
    user
       dashboard
+         dashboard.jsx
          cards.jsx
          navbar.jsx
          content.jsx
