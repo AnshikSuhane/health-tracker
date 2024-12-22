@@ -1,9 +1,16 @@
 import "./App.css";
-import Dashboard from "./component/user/Dashboard/Dashboard";
+import { Login } from "./Auth/login";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Register } from "./Auth/Register";
+
 function App() {
   return (
     <>
-      <Dashboard/>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </>
   );
 }

@@ -1,14 +1,9 @@
 import "./login.css";
 import Logo from "../assets/images/logo.png";
-import {
-  Grid,
-  Paper,
-  TextField,
-  Button,
-  Typography,
-  Link,
-} from "@mui/material";
+import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
 
+import { Register } from "./Register";
+import { Link } from "react-router-dom";
 import { FormControlLabel } from "@mui/material";
 import { Checkbox } from "@mui/material";
 
@@ -69,7 +64,7 @@ export const Login = () => {
               <Link href="#">Forgot password ?</Link>
             </Typography>
             <Typography>
-              Do you have an account ?<Link href="#">Sign Up</Link>
+              Do you have an account ?<Link to="/register">Sign Up</Link>
             </Typography>
           </Paper>
         </Grid>
