@@ -1,58 +1,56 @@
 import "./login.css";
 import Logo from "../assets/images/logo.png";
 import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
-import { handleError, handleSuccess } from "../assets/utils/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { FormControlLabel } from "@mui/material";
 import { Checkbox } from "@mui/material";
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { useState } from "react";
+import { handleError, handleSuccess } from "../assets/utils/utils";
 
-export const Login = () => {
+export const Register = () => {
   const paperStyle = {
     padding: 40,
-    height: "53vh",
-    width: 380,
+    height: "65vh",
+    width: 400,
   };
-
   const btnstyle = { margin: "8px 0" };
   const textFieldStyle = { marginBottom: "20px" };
 
   const navigate = useNavigate();
-  const [loginInfo, setloginInfo] = useState({
+  const [signupInfo, setSignupInfo] = useState({
+    name: "",
     email: "",
     password: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const copyLoginInfo = { ...loginInfo };
+    const copyLoginInfo = { ...signupInfo };
     copyLoginInfo[name] = value;
-    setloginInfo(copyLoginInfo);
+    setSignupInfo(copyLoginInfo);
   };
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    const { email, password } = loginInfo;
-    if (!email || !password) {
+    const { name, email, password } = signupInfo;
+    if (!name || !email || !password) {
       return handleError("All fields are required to fill!!!");
     }
     try {
-      const url = "http://localhost:3000/auth/login";
+      const url = "http://localhost:3000/auth/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginInfo),
+        body: JSON.stringify(signupInfo),
       });
       const result = await response.json();
-      const { success, message, jwtToken, name, error } = result;
+      const { success, message, error } = result;
       if (success) {
         handleSuccess(message);
-        localStorage.setItem("token", jwtToken);
-        localStorage.setItem("loggedInUser", name);
         setTimeout(() => {
-          navigate("/home");
+          navigate("/login");
         }, 1000);
       } else if (error) {
         const details = error?.details[0].message;
@@ -77,26 +75,40 @@ export const Login = () => {
           alignItems="center"
         >
           <Paper elevation={12} style={paperStyle} align="center">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSignup}>
               <Grid align="center"></Grid>
               <img className="logInImg" src={Logo} alt="Logo" />
+              <p>Enter Fullname:</p>
               <TextField
                 onChange={handleChange}
+                value={signupInfo.name}
                 className="userinput"
-                label="Email"
-                name="email"
-                placeholder="Enter Email"
-                value={loginInfo.email}
+                label="name"
+                name="name"
+                placeholder="Enter name"
                 variant="outlined"
                 fullWidth
                 style={textFieldStyle}
               />
+              <p>Enter Email:</p>
               <TextField
-                label="Password"
                 onChange={handleChange}
+                value={signupInfo.email}
+                className="userinput"
+                label="email"
+                name="email"
+                placeholder="Enter Email"
+                variant="outlined"
+                fullWidth
+                style={textFieldStyle}
+              />
+              <p>Create Password:</p>
+              <TextField
+                onChange={handleChange}
+                value={signupInfo.password}
+                label="password"
                 name="password"
                 placeholder="Enter password"
-                value={loginInfo.password}
                 type="password"
                 variant="outlined"
                 fullWidth
@@ -113,13 +125,11 @@ export const Login = () => {
                 style={btnstyle}
                 fullWidth
               >
-                Log in
+                Sign Up
               </Button>
+
               <Typography>
-                <Link href="#">Forgot password ?</Link>
-              </Typography>
-              <Typography>
-                Do you have an account ?<Link to="/register">Sign Up</Link>
+                Click here to Log In ?<Link to="/login">Sign In</Link>
               </Typography>
             </form>
           </Paper>
