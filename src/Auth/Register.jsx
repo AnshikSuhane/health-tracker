@@ -46,13 +46,19 @@ export const Register = () => {
         body: JSON.stringify(signupInfo),
       });
       const result = await response.json();
-      const { success, message } = result;
+      const { success, message, error } = result;
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
           navigate("/login");
         }, 1000);
+      } else if (error) {
+        const details = error?.details[0].message;
+        handleError(details);
+      } else if (!success) {
+        handleError(message);
       }
+
       console.log(result);
     } catch (err) {
       handleError(err);
