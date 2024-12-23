@@ -21,6 +21,7 @@ src
          profile.jsx
       analytics
          analytics.jsx
+
       offline_services
          offline_services.jsx
       assistance
@@ -28,13 +29,16 @@ src
          chat.jsx
    admin
       dashboard
-         currCard.jsx
+         schedule.jsx(display)
          navbar.jsx
          content.jsx
          footer.jsx
       renewalRequests
          renRequest.jsx
-      scheduleRequests
-         schRequest.jsx
-      chatRequests
-         chatRequest.jsx
+      patientSchedule
+         schedule.jsx
+      medicationAsDone
+         MarkAsDone.jsx 
+      profile
+         profile.jsx
+      
