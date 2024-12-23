@@ -21,6 +21,7 @@ src
          profile.jsx
       analytics
          analytics.jsx
+
       offline_services
          offline_services.jsx
       assistance
@@ -36,3 +37,8 @@ src
          renRequest.jsx
       patientSchedule
          schedule.jsx
+      medicationAsDone
+         MarkAsDone.jsx 
+      profile
+         profile.jsx
+      
