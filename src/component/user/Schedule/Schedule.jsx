@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/no-unknown-property */
+
 import medData from "../../../../public/medicationCard.json";
 
 const Schedule = () => {
